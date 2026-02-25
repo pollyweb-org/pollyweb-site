@@ -9,15 +9,13 @@ This project is licensed under the Apache License 2.0. See [LICENSE](./LICENSE).
 ## Project Structure
 
 - `index.html`: Main website page.
-- `newsletter-01.html`: Newsletter landing/content page.
+- `newsletters/newsletter-01.html`: Newsletter landing/content page.
 - `images/`: Static image assets used by the pages.
 
 ## Run Locally
 
 This is a static site, so no build step is required.
-
-1. Open `index.html` directly in your browser, or
-2. Serve the directory with a local HTTP server.
+Serve the directory with a local HTTP server (the page loads HTML components via `fetch`, which does not work reliably with `file://`).
 
 Example with Python:
 
