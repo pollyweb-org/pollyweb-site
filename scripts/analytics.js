@@ -71,6 +71,12 @@
     }
 
     async function initAnalytics() {
+        if (isTermsPage()) {
+            setConsent("granted");
+            loadGoogleTag();
+            return;
+        }
+
         const consent = getConsent();
         const eea = await isEeaUser();
 
@@ -88,10 +94,7 @@
             return;
         }
 
-        if (isTermsPage()) {
-            setConsent("granted");
-            loadGoogleTag();
-        }
+        return;
     }
 
     if (document.readyState === "loading") {
