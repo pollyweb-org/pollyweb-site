@@ -45,47 +45,6 @@
         }
     }
 
-    function removeBanner() {
-        const node = document.getElementById("analytics-consent-banner");
-        if (node) node.remove();
-    }
-
-    function showConsentBanner() {
-        if (document.getElementById("analytics-consent-banner")) return;
-
-        const banner = document.createElement("div");
-        banner.id = "analytics-consent-banner";
-        banner.innerHTML = `
-            <div style="position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:10000;background:#111827;color:#f9fafb;padding:1rem;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;">
-                <p style="margin:0 0 .75rem 0;font-size:.95rem;line-height:1.4;">We use analytics cookies to understand website usage. Accept analytics tracking?</p>
-                <div style="display:flex;gap:.5rem;justify-content:flex-end;">
-                    <button id="analytics-reject" type="button" style="border:1px solid #6b7280;background:transparent;color:#f9fafb;padding:.5rem .75rem;border-radius:8px;cursor:pointer;">Reject</button>
-                    <button id="analytics-accept" type="button" style="border:1px solid #2563eb;background:#2563eb;color:#fff;padding:.5rem .75rem;border-radius:8px;cursor:pointer;">Accept</button>
-                </div>
-            </div>
-        `;
-
-        document.body.appendChild(banner);
-
-        const acceptButton = document.getElementById("analytics-accept");
-        const rejectButton = document.getElementById("analytics-reject");
-
-        if (acceptButton) {
-            acceptButton.addEventListener("click", () => {
-                setConsent("granted");
-                removeBanner();
-                loadGoogleTag();
-            });
-        }
-
-        if (rejectButton) {
-            rejectButton.addEventListener("click", () => {
-                setConsent("denied");
-                removeBanner();
-            });
-        }
-    }
-
     async function fetchCountryCode() {
         try {
             const response = await fetch("/cdn-cgi/trace", { cache: "no-store" });
@@ -101,9 +60,14 @@
     async function isEeaUser() {
         const countryCode = await fetchCountryCode();
         if (!countryCode) {
-            return true;
+            return false;
         }
         return EEA_COUNTRIES.has(countryCode);
+    }
+
+    function isTermsPage() {
+        const path = window.location.pathname.replace(/\/+$/, "");
+        return path === "/terms" || path === "/terms.html";
     }
 
     async function initAnalytics() {
@@ -124,7 +88,10 @@
             return;
         }
 
-        showConsentBanner();
+        if (isTermsPage()) {
+            setConsent("granted");
+            loadGoogleTag();
+        }
     }
 
     if (document.readyState === "loading") {
