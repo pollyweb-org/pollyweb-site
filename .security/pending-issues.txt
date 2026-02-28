@@ -1,0 +1,2 @@
+# Add one issue per line. Any non-empty, non-comment line blocks git push.
+# Example: 2026-02-28 CVE-2026-12345 pending triage
