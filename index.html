@@ -201,6 +201,15 @@
             }
         }
 
+        @supports (-moz-appearance: none) {
+            .hero h1,
+            .section-title {
+                background: none;
+                -webkit-text-fill-color: initial;
+                color: #ffffff;
+            }
+        }
+
         .section-subtitle {
             text-align: center;
             color: var(--text-secondary);
