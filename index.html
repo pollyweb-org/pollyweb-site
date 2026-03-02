@@ -101,11 +101,17 @@
         .hero h1 {
             font-size: clamp(3rem, 8vw, 6rem);
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #a8a8b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
             animation: fadeInUp 0.8s ease-out;
+        }
+
+        @supports (-webkit-text-fill-color: transparent) {
+            .hero h1 {
+                background: linear-gradient(135deg, #ffffff 0%, #a8a8b8 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
         }
 
         .hero-subtitle {
@@ -183,10 +189,16 @@
             font-size: clamp(2rem, 5vw, 3.5rem);
             text-align: center;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
+        }
+
+        @supports (-webkit-text-fill-color: transparent) {
+            .section-title {
+                background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
         }
 
         .section-subtitle {
