@@ -231,7 +231,7 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -370,7 +370,7 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -739,6 +739,11 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero h1 {
+                font-size: clamp(2.2rem, 12vw, 3.2rem);
+                line-height: 1.05;
+            }
+
             .comparison-row {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -773,8 +778,62 @@
             .cta-button {
                 min-width: unset;
                 width: 100%;
+                white-space: normal;
+                font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+                padding: 1.1rem 1.25rem;
+                line-height: 1.3;
             }
 
+        }
+
+        @media (max-width: 360px) {
+            .hero,
+            .solution,
+            .vision-video,
+            .final-cta,
+            footer {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 11.5vw, 2.35rem);
+                line-height: 1.05;
+                overflow-wrap: anywhere;
+                text-wrap: balance;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-container {
+                gap: 1rem;
+            }
+
+            .cta-button {
+                font-size: 1.25rem;
+                padding: 1rem 1.25rem;
+                white-space: normal;
+                line-height: 1.3;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .feature-title {
+                font-size: 1.2rem;
+            }
+
+            .feature-description {
+                font-size: 1.05rem;
+            }
         }
 
         @media (min-width: 1024px) {
