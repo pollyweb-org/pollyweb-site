@@ -1,0 +1,31 @@
+:root {
+    --bg-dark: #0a0a0f;
+    --text-primary: #ffffff;
+    --gradient-hero: linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-hero);
+}
+
+h1 {
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 4rem);
+    max-width: 800px;
+    text-align: center;
+    padding: 2rem;
+    line-height: 1.2;
+}
